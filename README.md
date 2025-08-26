@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# kantox-qa-test
-Submission for Kantox QA technical test
-=======
 # Kantox QA Test Submission
 
 This repository contains my submission for the Kantox QA technical test, including test cases for the Cashier System (Part 1) and API tests using Postman (Part 2).
