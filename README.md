@@ -17,7 +17,10 @@ The test cases for the Cashier System are documented in test_cases.xlsx. They co
 
 ### Files
 
-test_cases.xlsx: Contains 12 test cases in a tabular format, assumptions, and Gherkin examples.
+test_cases.xlsx: It contains two sheets:
+
+- Introduction_Part_1: Includes the assumptions and two sample test cases written in Gherkin format.
+- Test_Cases: Contains 12 test cases with their detailed descriptions and coverage.
 
 ## Part 2: API Tests with Postman
 
