@@ -12,12 +12,12 @@ The test cases for the Cashier System are documented in test_cases.xlsx. They co
 - Calculating totals with and without discounts.
 - Applying discount rules (FreeRule, ReducedPriceRule, FractionPriceRule).
 - Handling edge cases, negative cases, and configuration errors.
-- Suppositions made due to the absence of products.yml and rules.yml.
+- Assumptions made due to the absence of products.yml and rules.yml.
 - Two Gherkin examples.
 
 ### Files
 
-test_cases.xlsx: Contains 12 test cases in a tabular format, suppositions, and Gherkin examples.
+test_cases.xlsx: Contains 12 test cases in a tabular format, assumptions, and Gherkin examples.
 
 ## Part 2: API Tests with Postman
 
