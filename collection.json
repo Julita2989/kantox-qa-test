@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "ecf1bb3f-9661-4744-83d5-f47bb3c1e04c",
+		"name": "Kantox API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4221337"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "GET /posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", () => {",
+									"  pm.expect(pm.response.json()).to.be.an(\"array\");",
+									"});",
+									"",
+									"pm.test(\"Each post has required fields\", () => {",
+									"  const posts = pm.response.json();",
+									"  posts.forEach(post => {",
+									"    pm.expect(post).to.have.property(\"id\");",
+									"    pm.expect(post).to.have.property(\"title\");",
+									"    pm.expect(post).to.have.property(\"author\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /posts{id}_valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"ID is present in response body\", function () { ",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/posts/1"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () { ",
+									"    pm.response.to.have.status(201); ",
+									"});",
+									"",
+									"pm.test(\"New post has title 'New Post'\", function () { ",
+									"    pm.expect(pm.response.json().title).to.equal(\"New Post\"); ",
+									"});",
+									"",
+									"pm.test(\"New post has an auto-generated ID\", function () { ",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\"); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Post\", \n    \"author\": \"JGM Author\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /posts/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Updated post title is 'Updated Post'\", function () { ",
+									"    pm.expect(pm.response.json().title).to.equal(\"Updated Post\"); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Post\",\n  \"author\": \"Updated Author\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/posts/1"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /posts/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/posts/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "GET /comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"",
+									"pm.test(\"Each post has required fields\", () => {",
+									"  const posts = pm.response.json();",
+									"  posts.forEach(post => {",
+									"    pm.expect(post).to.have.property(\"id\");",
+									"    pm.expect(post).to.have.property(\"body\");",
+									"    pm.expect(post).to.have.property(\"postId\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /comments/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Comment ID is 1\", function () { ",
+									"    pm.expect(pm.response.json().id).to.equal('1'); ",
+									"});",
+									"",
+									"pm.test(\"Comment postId is 1\", function () { ",
+									"    pm.expect(pm.response.json().postId).to.equal(1); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/comments/1"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () { ",
+									"    pm.response.to.have.status(201); ",
+									"});",
+									"",
+									"pm.test(\"New comment has body 'New comment JGM'\", function () { ",
+									"    pm.expect(pm.response.json().body).to.equal(\"New comment JGM\"); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"New comment JGM\", \n    \"postId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/comments"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /comments/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Updated comment body is 'Updated comment'\", function () { ",
+									"    pm.expect(pm.response.json().body).to.equal(\"Updated comment\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"Updated comment\",\n    \"postId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/comments/1"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /comments/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/comments/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "GET /profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () { ",
+									"    pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Profile contains name\", () => {",
+									"  const profile = pm.response.json();",
+									"  pm.expect(profile).to.have.property(\"name\");",
+									"  pm.expect(profile.name).to.be.a(\"string\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/profile"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative Tests",
+			"item": [
+				{
+					"name": "GET /posts/{id}_invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 for invalid ID\", function () { ",
+									"    pm.response.to.have.status(404); ",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/posts/999"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /comments/{id}_invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 for invalid ID\", function () { ",
+									"    pm.response.to.have.status(404); ",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/comments/999"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /posts_invalid_body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () { ",
+									"    pm.response.to.have.status(201); ",
+									"});",
+									"pm.test(\"Response has no title\", function () { ",
+									"    pm.expect(pm.response.json()).to.not.have.property(\"title\"); ",
+									"});",
+									"pm.test(\"Response has no author\", function () { ",
+									"    pm.expect(pm.response.json()).to.not.have.property(\"author\"); ",
+									"});",
+									"pm.test(\"Response has an auto-generated ID\", function () { ",
+									"    pm.expect(pm.response.json()).to.have.property(\"id\"); ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /posts_malformed_JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500 for malformed JSON\", function () { ",
+									"    pm.response.to.have.status(500); ",
+									"});",
+									"",
+									"pm.test(\"Response is not empty\", function () { ",
+									"    pm.expect(pm.response.text()).to.not.be.empty; ",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Invalid Post\", \n    \"author\": \"JGM Author\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/posts",
+						"description": "Negative test for sending malformed JSON to POST /posts. Expected a 400 Bad Request, but json-server (v1.0.0-beta.1) returns 500 Internal Server Error, which may indicate a server-side issue or configuration difference. The test verifies the 500 status and checks for an error message in the response."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
