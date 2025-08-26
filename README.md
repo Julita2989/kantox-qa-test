@@ -38,7 +38,8 @@ test_cases.xlsx: It contains two sheets:
    - If port 3000 is in use, change it (e.g., `json-server --watch db.json --port 3001`) and update the `baseUrl` variable in Postman.
 5. Import the Postman collection:
    - Open Postman.
-   - Click "Import" > "Choose Files" and select `collection.json` from this repository.
+   - Create a new Workspace if needed.
+   - On the workspace, click "Import" > "Choose Files" and select `collection.json` from this repository (or copy the content into the import dialog).
    - Set up an environment variable `baseUrl` with value `http://localhost:3000` (See step 3 of the Running the Tests in Postman section).
 
 ### Resetting the Database
@@ -57,25 +58,33 @@ test_cases.xlsx: It contains two sheets:
    - Create a new environment (Environments tab > Add).
    - Add variable `baseUrl` with value `http://localhost:3000`.
    - Select this environment.
-4. Run individual requests or use the Collection Runner:
-   - Click "Runner" at the top.
-   - Select the collection, choose your environment, and click "Run Kantox API Test".
+4. Use the Collection Runner or run individual requests:
+   - Click "Runner" at the top (or "Run" from the collection options, according to the working environment).
+   - Choose your environment, and click "Run Kantox API Test".
    - All tests should pass if the server is set up correctly and `db.json` is in its original state.
 
 ### Collection Details
 - The `collection.json` file contains tests for all required endpoints:
-  - `GET /posts`, `GET /posts/{id}`, `POST /posts`, `PUT /posts/{id}`, `DELETE /posts/{id}`
-  - `GET /comments`, `GET /comments/{id}`, `POST /comments`, `PUT /comments/{id}`, `DELETE /comments/{id}`
+  - `GET /posts`
+  - `GET /posts/{id}`
+  - `POST /posts`
+  - `PUT /posts/{id}`
+  - `DELETE /posts/{id}`
+  - `GET /comments`
+  - `GET /comments/{id}`
+  - `POST /comments`
+  - `PUT /comments/{id}`
+  - `DELETE /comments/{id}`
   - `GET /profile`
 - Additional negative tests:
   - `GET /posts/999`: Verifies 404 for invalid ID.
-  - `POST /posts` with empty body: Verifies the response lacks `title` and `author` fields.
+  - `POST /posts` with empty body: Verifies the response lacks `title` and `author` fields, only the `id` field is returned, which is expected.
   - `POST /posts` with malformed JSON: Verifies 500 Internal Server Error (observed behavior) and checks for an error message. Note: Expected 400 Bad Request, but json-server (v1.0.0-beta.1) returns 500, which may indicate a server-side issue or configuration.
     - `GET /comments/999`: Verifies 404 for invalid ID.
 - Each request includes automated tests for:
   - Correct status codes (e.g., 200, 201, 404, 500).
   - Response structure and content (e.g., expected titles, IDs, absence of fields, or error messages).
-- Requests are organized into folders: `Posts`, `Comments`, `Profile`, `Negative Tests`.
+- Requests are organized into folders: `Posts`, `Comments`, `Profile`, and `Negative Tests`.
 
 ### Notes
 - The server uses `db.json` as the data source, which is modified by `POST` and `DELETE` requests. Reset it as described above for consistent test runs.
