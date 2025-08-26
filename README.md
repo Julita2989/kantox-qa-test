@@ -2,7 +2,7 @@
 
 This repository contains my submission for the Kantox QA technical test, including test cases for the Cashier System (Part 1) and API tests using Postman (Part 2).
 
-Part 1: Test Case Creation for Cashier System
+## Part 1: Test Case Creation for Cashier System
 
 ### Overview
 
@@ -78,90 +78,6 @@ test_cases.xlsx: Contains 12 test cases in a tabular format, suppositions, and G
 - The server uses `db.json` as the data source, which is modified by `POST` and `DELETE` requests. Reset it as described above for consistent test runs.
 - The `POST /posts` malformed JSON test returns 500 instead of the expected 400, which has been documented in the test description and adjusted in the assertions.
 - If tests fail, ensure the server is running, `baseUrl` is correct, and `db.json` is reset to its original state.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Kantox QA Test Submission
-
-## Part 2: API Tests with Postman
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-- Postman (download from https://www.postman.com/downloads/)
-
-### Setup Instructions
-1. Clone or download this repository.
-2. Navigate to the project directory: `cd path/to/repository`.
-3. Install dependencies: `npm install`.
-4. Start the JSON server: `npm start`.
-   - The API will be available at `http://localhost:3000`.
-5. Import the Postman collection:
-   - Open Postman.
-   - Click "Import" > "Choose Files" and select `collection.json` from this repository.
-   - Set up an environment variable `baseUrl` with value `http://localhost:3000` (see below for details).
-
-
-### Running the Tests in Postman
-1. Ensure the JSON server is running (see Setup Instructions).
-2. In Postman, open the imported "Kantox API Test" collection.
-3. Set the environment: If not auto-set, create a new environment (Environments tab > Add), add `baseUrl` variable as `http://localhost:3000`, and select it.
-4. Run individual requests or use the Collection Runner:
-   - Click "Runner" at the top.
-   - Select the collection, choose your environment, and click "Run Kantox API Test".
-   - All tests should pass if the server is set up correctly.
-
-
-
-
-
 
 
 
