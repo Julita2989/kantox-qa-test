@@ -12,8 +12,8 @@ The test cases for the Cashier System are documented in test_cases.xlsx. They co
 - Calculating totals with and without discounts.
 - Applying discount rules (FreeRule, ReducedPriceRule, FractionPriceRule).
 - Handling edge cases, negative cases, and configuration errors.
-- Assumptions made due to the absence of products.yml and rules.yml.
-- Two Gherkin examples.
+- Assumptions made due to the absence of products.yml and rules.yml. (Sheet: Introduction_Part_1)
+- Two Gherkin examples. (Sheet: Introduction_Part_1)
 
 ### Files
 
