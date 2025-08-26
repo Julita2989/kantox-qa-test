@@ -36,7 +36,7 @@ test_cases.xlsx: Contains 12 test cases in a tabular format, assumptions, and Gh
 5. Import the Postman collection:
    - Open Postman.
    - Click "Import" > "Choose Files" and select `collection.json` from this repository.
-   - Set up an environment variable `baseUrl` with value `http://localhost:3000` (see below).
+   - Set up an environment variable `baseUrl` with value `http://localhost:3000` (See step 3 of the Running the Tests in Postman section).
 
 ### Resetting the Database
 - The json-server modifies `db.json` for `POST` and `DELETE` requests, and these changes persist across server restarts.
